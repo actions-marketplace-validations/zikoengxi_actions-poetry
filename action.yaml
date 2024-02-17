@@ -36,3 +36,17 @@ runs:
       shell: bash
       if: ${{ inputs.poetry-version != 'latest' }}
       run: pipx install poetry==${{ inputs.poetry-version }}
+    - name: Configure the directory of virtualenv inside the project’s root directory
+      shell: bash
+      run: |
+        poetry config virtualenvs.create true
+        poetry config virtualenvs.in-project true
+    - name: Load the cached virtualenv
+      uses: actions/cache@v4
+      env:
+        cache-key-prefix: ${{ runner.os }}-venv-py${{ inputs.python-version }}
+      with:
+        path: ./.venv
+        key: ${{ env.cache-key-prefix }}-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: |
+          ${{ env.cache-key-prefix }}
