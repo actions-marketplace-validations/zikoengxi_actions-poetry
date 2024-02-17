@@ -38,6 +38,7 @@ Input parameters:
 
 - python-version(required): The version of python to install.
 - poetry-version(optional): The version of poetry to install. The default value is 'latest'.
+- poetry-plugins(optional): The whitespace/newline separated list of poetry plugins to install.
 
 ## License
 

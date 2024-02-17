@@ -14,6 +14,10 @@ inputs:
     description: "The version of poetry to install"
     required: false
     default: latest
+  poetry-plugins:
+    description: "The whitespace/newline separated list of poetry plugins to install"
+    required: false
+    default: ""
 
 runs:
   using: composite
@@ -50,3 +54,11 @@ runs:
         key: ${{ env.cache-key-prefix }}-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
           ${{ env.cache-key-prefix }}
+    - name: Install poetry plugins
+      shell: bash
+      if: ${{ inputs.poetry-plugins != '' }}
+      run: |
+        POETRY_PLUGINS=$(echo "${{ inputs.poetry-plugins }}")
+        for PLUGIN in ${POETRY_PLUGINS}; do
+          pipx inject poetry $PLUGIN
+        done
