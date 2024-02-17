@@ -1,0 +1,11 @@
+name: "Install Python Poetry"
+author: zikoengxi
+description: GitHub Action for Python projects using poetry.
+
+branding:
+  icon: 'package'
+  color: 'gray-dark'
+
+runs:
+  using: composite
+  steps: []
