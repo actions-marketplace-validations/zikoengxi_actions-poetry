@@ -26,10 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install python & poetry
-        uses: zikoengxi/actions-poetry@v1
+        uses: zikoengxi/actions-poetry@v2
         with:
           python-version: ${{ matrix.python-version }}
           poetry-version: ${{ matrix.poetry-version }}
+          poetry-plugins: "poethepoet poetry-dotenv-plugin"
       - name: Poetry --help
         run: poetry --help
 ```
