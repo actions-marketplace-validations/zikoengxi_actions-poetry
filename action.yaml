@@ -1,4 +1,4 @@
-name: "Install Python Poetry"
+name: "Install Python and Poetry"
 author: zikoengxi
 description: GitHub Action for Python projects using poetry.
 
